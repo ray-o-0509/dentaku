@@ -1,0 +1,41 @@
+body{
+    text-align: center;
+    background-color: white;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+table{
+    margin: 50px auto;
+}
+
+td{
+    width: 140px;
+    height: 160px;
+    font-size: 54px;
+    color: #62585A;
+    text-align: center;
+    background-color: #f0e9ea;
+    font-weight: 600;
+    border: 10px solid white;
+    border-radius: 80px;
+}
+.td_orange{
+    background-color: #F0D3D1;
+}
+
+.td_blackgrey{
+    background-color: #F1D8A7;
+}
+#td_answer{
+    background-color: #F0D3D1;
+    color: #62585A;
+    text-align: right;
+    border-radius: 20px;
+    padding: 0 20px;
+    max-width: 590px;
+    overflow-x: scroll;
+}
+
+#number_text{
+    font-size: 80px;
+}
