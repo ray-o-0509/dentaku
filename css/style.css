@@ -11,19 +11,12 @@ table{
 td{
     width: 140px;
     height: 160px;
-    border: 10px solid white;
-}
-
-button{
-    width: 100%;
-    height: 100%;
-    background-color: transparent;
-    border: none;
     font-size: 54px;
     color: #62585A;
     text-align: center;
     background-color: #f0e9ea;
     font-weight: 600;
+    border: 10px solid white;
     border-radius: 80px;
 }
 .td_orange{

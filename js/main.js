@@ -98,3 +98,19 @@ function tokusyu(kazu) {
     }
 }
 
+
+
+$(document).ready(function(){
+    $('table').on('click', '#button_7', function(){
+        clickNumber(7);
+    });
+
+    $('table').on('click', '#button_8', function(){
+        clickNumber(8);
+    });
+
+    $('table').on('click', '#button_9', function(){
+        clickNumber(9);
+    });
+    
+});
