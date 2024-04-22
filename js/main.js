@@ -1,15 +1,56 @@
-
 let currentNumber = 0;
 let lastNumber = null;
 let kigou = '';
 let syousuten = 0;
 let syousuten_ari = false;
 
+document.getElementById('calculator').addEventListener('click', function(event) {
+    let target = event.target;
+
+    if (target.tagName === 'TD') {
+        let buttonText = target.textContent;
+
+        switch(buttonText) {
+            case 'AC':
+                reloadClick();
+                break;
+            case '+/-':
+                tokusyu(-1);
+                break;
+            case '%':
+                tokusyu(0.01);
+                break;
+            case '÷':
+                clickKigou('/');
+                break;
+            case '×':
+                clickKigou('*');
+                break;
+            case '-':
+                clickKigou('-');
+                break;
+            case '+':
+                clickKigou('+');
+                break;
+            case '=':
+                clickKigou('');
+                break;
+            default:
+                if (!isNaN(parseInt(buttonText))) {
+                    clickNumber(parseInt(buttonText));
+                } else if (buttonText === '.') {
+                    syosuClick();
+                }
+                break;
+        }
+    }
+});
+
 function clickNumber(num) {
-    if(syousuten_ari == true){ //もし小数の位を入力している場合
+    if(syousuten_ari == true){
         syousuten++;
         currentNumber = currentNumber + ((0.1 ** syousuten) * num);
-    }else{ //正の位を入力してる時
+    }else{
         currentNumber = currentNumber * 10 + num;
     }
 
@@ -17,7 +58,6 @@ function clickNumber(num) {
     console.log('数字ボタンが押されました');
     console.log('currentNumber:' + currentNumber + ', lastNumber: ' + lastNumber);
 
-    //計算が終わって=を押して計算済みの数字が出た後に数字を押したらリセットできるようにする
     if (kigou == '') { 
         lastNumber = null;
     }
@@ -37,7 +77,6 @@ function clickKigou(kigouText) {
 
     keisan();
     kigou = kigouText;
-
 
     document.getElementById('kigou_td_w').style.backgroundColor = '#F0D3D1';
     document.getElementById('kigou_td_w').style.color = '#62585A';
@@ -62,7 +101,6 @@ function clickKigou(kigouText) {
     }
 }
 
-
 function keisan() {
     if (kigou == '/') {
         lastNumber = lastNumber / currentNumber;
@@ -74,7 +112,7 @@ function keisan() {
         lastNumber = lastNumber - currentNumber;
     }
 
-    if (lastNumber == null) { // 初めての計算の場合
+    if (lastNumber == null) {
         lastNumber = currentNumber;
     }
 
@@ -89,28 +127,11 @@ function reloadClick() {
 }
 
 function tokusyu(kazu) {
-    if (kigou == '' && lastNumber != null) { //=ボタンが押された後にボタンを押した時
+    if (kigou == '' && lastNumber != null) {
         lastNumber = lastNumber * kazu;
         document.getElementById('number_text').textContent = lastNumber;
-    } else { //計算中もしくは、初回（何も+や-ボタンを使ってない時）の時
+    } else {
         currentNumber = currentNumber * kazu;
         document.getElementById('number_text').textContent = currentNumber;
     }
 }
-
-
-
-$(document).ready(function(){
-    $('table').on('click', '#button_7', function(){
-        clickNumber(7);
-    });
-
-    $('table').on('click', '#button_8', function(){
-        clickNumber(8);
-    });
-
-    $('table').on('click', '#button_9', function(){
-        clickNumber(9);
-    });
-    
-});
